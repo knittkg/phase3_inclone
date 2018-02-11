@@ -1,0 +1,15 @@
+<div class="container">
+<p><%= @user.name %>のページ</p>
+<!-- <p>メールアドレス: <%= @user.email %></p> -->
+<!-- <p><%= link_to 'New Postpict', new_postpict_path %></p> -->
+
+<p>お気に入り</p>
+
+<% @favorites_postpicts.each do |favorite_postpict| %>
+  <article>
+    <header><%= favorite_postpict.postpict.user.name %></header>
+    <div class=pict><%= image_tag (favorite_postpict.postpict.image_url) ,:size => "150x100"  if favorite_postpict.postpict.image.present? %></div>
+    <div class=detail><%= link_to '　詳細　', postpict_path(favorite_postpict.postpict.id) %></div>
+  </article>
+<% end %>
+</div>

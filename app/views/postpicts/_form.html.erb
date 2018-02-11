@@ -1,0 +1,28 @@
+<%= form_with(model: postpict, local: true, url: choose_new_or_edit ) do |form| %>
+  <% if postpict.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(postpict.errors.count, "error") %> prohibited this postpict from being saved:</h2>
+
+      <ul>
+      <% postpict.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image, id: :postpict_image %>
+    <%= form.hidden_field :image_cache %>
+  </div>
+
+  <div class="field">
+    <%= form.label :caption %>
+    <%= form.text_area :caption, id: :postpict_caption %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

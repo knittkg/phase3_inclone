@@ -1,0 +1,26 @@
+<h3>以下の内容で、送信する。</h3>
+
+<%= form_with(model: @postpict, url: postpicts_path, local: true) do |form| %>
+  <%= form.hidden_field :image %>
+  <%= form.hidden_field :caption %>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@postpict.image.url , :size => "300x200") unless @postpict.image.blank? %> 
+  <%= hidden_field_tag :"cache[image]",@postpict.image.cache_name %>
+</p>
+
+<p>
+  <strong>Caption:</strong>
+  <%= @postpict.caption %>
+</p>
+
+  <%= form.submit  "登録する" %>
+<% end %>
+
+<%= form_with(model: @postpict, url: new_postpict_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :image %>
+  <%= form.hidden_field :caption %>
+  <%= form.submit "もどる", name: 'back' %>
+<% end %>
+

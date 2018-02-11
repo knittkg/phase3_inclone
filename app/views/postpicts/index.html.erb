@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+
+  <tbody>
+    <% @postpicts.each do |postpict| %>
+      <article class=a_post)>
+        <header class=poster_name><%= postpict.user.name %></header>
+        <div class=pict>
+          <%= image_tag (postpict.image_url) ,:size => "300x200" if postpict.image.present?  %>
+        </div> 
+        <div class=caption>
+          <%= postpict.caption %>
+        </div>
+        <div class=response>
+          <%= link_to 'Show', postpict , class: 'btn btn-default'%> 
+          <% if logged_in? && postpict.user_id == current_user.id %> 
+          <%= link_to 'Edit', edit_postpict_path(postpict) , class: 'btn btn-default' %>
+          <%= link_to 'Destroy', postpict, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-default' %>
+          <% else %>
+          <% end %>
+        </div>
+      </article>
+    <% end %>
+  </tbody>
+
+<br>
+
+<!-- <%= link_to 'New Postpict', new_postpict_path , class: 'btn btn-default' %> -->

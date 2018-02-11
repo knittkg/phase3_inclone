@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @postpict.image ,:size => "300x200" %>
+</p>
+
+<p>
+  <strong>Caption:</strong>
+  <%= @postpict.caption %>
+</p>
+
+<% unless @postpict.user == current_user %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除する', favorite_path(postpict_id: @postpict.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする', favorites_path(postpict_id: @postpict.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
+<% if logged_in? && @postpict.user_id == current_user.id %>
+  <td><%= link_to 'Edit', edit_postpict_path(@postpict) %></td>
+  <td><%= link_to 'Destroy', @postpict, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% else %>
+<% end %>
+
