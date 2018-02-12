@@ -17,5 +17,9 @@ module Inclone
 
     # glyphiconsが使っている*.eot *.svg *.ttf *.woffらを precompile の対象に含める
     config.assets.precompile += %w(*.eot *.svg *.ttf *.woff)
+
+    # glyphiconsのパスを通す 2018/02/12 10:25
+    # https://stackoverflow.com/questions/48047545/rails-5-1-2-bootstrap-icons-not-being-served-in-production
+    config.assets.paths << "#{Rails.root.to_s}/app/assets/fonts"
   end
 end
